@@ -30,10 +30,10 @@ public class LeerCsv {
        br = null;
    }
    
-   public String mostrarCsv ()throws IOException{
-        
+   public String mostrarCsv (String abre)throws IOException{
+       
       try {
-         br =new BufferedReader(new FileReader("Libro1.csv"));
+         br =new BufferedReader(new FileReader(abre));
          String line = br.readLine();
          while (null!=line) {
             String [] fields = line.split(SEPARATOR);

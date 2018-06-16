@@ -5,16 +5,18 @@
  */
 package com.mycompany.taller03;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author Pavilion g4
  */
 public class JFrameVozActivaPasiva extends javax.swing.JFrame {
-
+File abre;
     /**
      * Creates new form JFrameVozActivaPasiva
      */
@@ -217,7 +219,11 @@ public class JFrameVozActivaPasiva extends javax.swing.JFrame {
 
     private void loadCsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadCsvActionPerformed
         // TODO add your handling code here:
-        long timeStart = System.currentTimeMillis();
+        JFileChooser file=new JFileChooser();
+        file.showOpenDialog(this);
+   /**abrimos el archivo seleccionado*/
+        abre=file.getSelectedFile();
+        System.out.println(abre);
         int cont_correctas=0;
         int cont_incorrectas=0;
         double cal_porcentaje=0;
@@ -230,7 +236,8 @@ public class JFrameVozActivaPasiva extends javax.swing.JFrame {
         PosTagger posTagger = new PosTagger();
         String result_analisis;
         try {
-            resultado = csv.mostrarCsv();
+            long timeStart = System.currentTimeMillis();
+            resultado = csv.mostrarCsv(String.valueOf(abre));
             frases = resultado.split("\n");
             for(int i=0;i<frases.length;i++){
                 aux=frases[i].split(",");
